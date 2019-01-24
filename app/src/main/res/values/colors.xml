@@ -16,4 +16,11 @@
     <color name="grey_700">#616161</color>
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
+
+    <color name="color_c7c7c7">#c7c7c7</color>
+    <color name="white">#ffffff</color>
+    <color name="color_e5e5e5">#e5e5e5</color>
+    <color name="color_dddddd">#dddddd</color>
+    <color name="color_00ffffff">#00ffffff</color>
+
 </resources>

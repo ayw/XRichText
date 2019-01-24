@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sendtion.xrichtextdemo.ui.XRichTextActivity">
+
+    <LinearLayout
+        android:id="@+id/input_lt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.sendtion.xrichtextdemo.view.LimitEditTextView
+            android:id="@+id/limitEditTextView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:focusable="true"
+            app:hint_text="请填写需要注意的事项"
+            app:limit_num="46" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#F2F2F2FF" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <Button
+                android:id="@+id/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/selector_xrich_bg"
+                android:text="确定" />
+
+            <Button
+                android:id="@+id/no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/ok"
+                android:background="@drawable/selector_xrich_bg"
+                android:text="取消" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="7dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="7dp">
+
+            <Button
+                android:id="@+id/clear_bt"
+                style="@style/xrich_add_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/orange_click_bg"
+                android:text="清空" />
+
+            <Button
+                android:id="@+id/add_text_bt"
+                style="@style/xrich_add_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/orange_click_bg"
+                android:text="添加文字" />
+
+            <Button
+                android:id="@+id/add_pic_btn"
+                style="@style/xrich_add_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/orange_click_bg"
+                android:text="添加图片" />
+
+            <Button
+                android:id="@+id/save_btn"
+                style="@style/xrich_add_opt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/orange_click_bg"
+                android:text="保存" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

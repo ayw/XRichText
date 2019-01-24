@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="#ffffff"
+            android:padding="15dp"
+            android:text="Omeyp注氧清肌深层清洁，它是通过真空负压与皮肤清洁溶液、营养精华充分结合，深层祛除黑头粉刺、老化角质细胞、皮脂、毛囊漏斗部的各种杂质，螨虫及油脂残留物等，净透肌肤，给肌肤从未有过的洁净感受。"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/img_item_iv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="12dp"
+            android:background="#ffffff"
+            android:padding="15dp"
+            android:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_opt_ll"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#FF000000"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="7dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="7dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/up_move_bt"
+            style="@style/xrich_item_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="上移" />
+
+        <Button
+            android:id="@+id/down_move_bt"
+            style="@style/xrich_item_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:text="下移" />
+
+        <Button
+            android:id="@+id/edite_btn"
+            style="@style/xrich_item_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:text="编辑" />
+
+
+        <Button
+            android:id="@+id/del_btn"
+            style="@style/xrich_item_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="删除" />
+
+    </LinearLayout>
+
+</LinearLayout>

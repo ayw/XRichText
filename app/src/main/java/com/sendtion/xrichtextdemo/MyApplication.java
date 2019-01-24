@@ -2,6 +2,7 @@ package com.sendtion.xrichtextdemo;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.wenming.library.LogReport;
 import com.wenming.library.save.imp.CrashWriter;
 import com.wenming.library.save.imp.LogWriter;
@@ -14,6 +15,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Utils.init(this);
         // 初始化崩溃日志上传 https://github.com/wenmingvs/LogReport
         initCrashReport();
         // 在任意地方，调用以下方法即可，崩溃发生后，会在下一次App启动的时候使用Service异步打包日志，
