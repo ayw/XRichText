@@ -12,12 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.sendtion.xrichtextdemo.R;
 import com.sendtion.xrichtextdemo.adapter.MyNoteListAdapter;
 import com.sendtion.xrichtextdemo.bean.Note;
 import com.sendtion.xrichtextdemo.db.NoteDao;
 import com.sendtion.xrichtextdemo.view.SpacesItemDecoration;
+import com.zzhoujay.richtext.RichText;
 
 import java.util.List;
 
@@ -36,12 +38,13 @@ public class MainActivity extends BaseActivity {
     private NoteDao noteDao;
     private int groupId;//分类ID
     private String groupName;
+    private TextView edite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        RichText.initCacheDir(getExternalCacheDir());
         initView();
 
     }
@@ -49,6 +52,14 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+
+        edite = findViewById(R.id.edite);
+        edite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, XRichTextActivity.class));
+            }
+        });
 
         noteDao = new NoteDao(this);
 
@@ -85,7 +96,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         int ret = noteDao.deleteNote(note.getId());
-                        if (ret > 0){
+                        if (ret > 0) {
                             showToast("删除成功");
                             //TODO 删除笔记成功后，记得删除图片（分为本地图片和网络图片）
                             //获取笔记中图片的列表 StringUtils.getTextFromHtml(note.getContent(), true);
@@ -100,7 +111,7 @@ public class MainActivity extends BaseActivity {
     }
 
     //刷新笔记列表
-    private void refreshNoteList(){
+    private void refreshNoteList() {
         if (noteDao == null)
             noteDao = new NoteDao(this);
         noteList = noteDao.queryNotesAll(groupId);

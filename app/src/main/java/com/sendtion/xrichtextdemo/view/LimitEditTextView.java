@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.KeyboardUtils;
 import com.sendtion.xrichtextdemo.R;
 
 /**
@@ -24,9 +23,9 @@ import com.sendtion.xrichtextdemo.R;
 
 public class LimitEditTextView extends RelativeLayout implements InputFilter {
 
-    View rootView;
-    EditText limitEt;
-    TextView limitInfo;
+    private View rootView;
+    private EditText limitEt;
+    private TextView limitInfo;
     private int limitNum = 60;
 
     public LimitEditTextView(Context context) {
@@ -36,6 +35,14 @@ public class LimitEditTextView extends RelativeLayout implements InputFilter {
     public LimitEditTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
+    }
+
+    public EditText getLimitEt() {
+        return limitEt;
+    }
+
+    public void setLimitEt(EditText limitEt) {
+        this.limitEt = limitEt;
     }
 
     private void initView(final Context context, AttributeSet attrs) {
@@ -96,28 +103,6 @@ public class LimitEditTextView extends RelativeLayout implements InputFilter {
             return;
         }
         limitEt.setHint(text);
-    }
-
-    /**
-     * 自动聚焦，没用
-     */
-    public void focusInput() {
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                limitEt.setFocusable(true);
-                limitEt.setFocusableInTouchMode(true);
-                limitEt.requestFocus();
-                KeyboardUtils.showSoftInput(LimitEditTextView.this);
-            }
-        }, 500);
-    }
-
-    public void GoneEditeText() {
-        limitEt.setFocusable(false);
-        limitEt.setFocusableInTouchMode(false);
-        limitEt.clearFocus();
-        KeyboardUtils.hideSoftInput(this);
     }
 
     @Override

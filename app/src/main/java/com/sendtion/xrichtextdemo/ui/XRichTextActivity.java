@@ -23,10 +23,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.KeyboardUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.sendtion.xrichtext.RichTextEditor;
 import com.sendtion.xrichtextdemo.R;
@@ -34,6 +38,7 @@ import com.sendtion.xrichtextdemo.adapter.XrichAdapter;
 import com.sendtion.xrichtextdemo.bean.XrichBean;
 import com.sendtion.xrichtextdemo.util.PictureDialog;
 import com.sendtion.xrichtextdemo.view.LimitEditTextView;
+import com.zzhoujay.richtext.RichText;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -45,9 +50,10 @@ public class XRichTextActivity extends AppCompatActivity implements View.OnClick
     Button clear_bt;
     Button add_text_bt;
     Button add_pic_btn;
-    Button ok;
-    Button no;
+    TextView ok;
+    TextView no;
     Button save_btn;
+    TextView content;
 
     LinearLayout input_lt;
     LimitEditTextView limitEditTextView;
@@ -67,6 +73,7 @@ public class XRichTextActivity extends AppCompatActivity implements View.OnClick
         add_text_bt = findViewById(R.id.add_text_bt);
         add_pic_btn = findViewById(R.id.add_pic_btn);
         input_lt = findViewById(R.id.input_lt);
+        content = findViewById(R.id.content);
         no = findViewById(R.id.no);
         ok = findViewById(R.id.ok);
         save_btn = findViewById(R.id.save_btn);
@@ -79,10 +86,30 @@ public class XRichTextActivity extends AppCompatActivity implements View.OnClick
         add_pic_btn.setOnClickListener(this);
         save_btn.setOnClickListener(this);
         ok.setOnClickListener(this);
+        no.setOnClickListener(this);
 
         xrichAdapter = new XrichAdapter(R.layout.xrich_item, xrichBeanList);
         recyclerview.setAdapter(xrichAdapter);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
+
+//        String text = "<img style=\"max-width:100%;height:auto;\" src=\"http://www.52mrb.com/group1/M00/00/0C/rBJHZVrgZaSAfcktAAHCsNorduc537.jpg\"/>\n" +
+//                "<br />\n" +
+//                "<p>索拉卡建档立卡聚隆科技熟练度空间看了了圣诞节福利的时间</p>\n" +
+//                "<br />\n" +
+//                "<img style=\"max-width:100%;height:auto;\" src=\"http://www.52mrb.com/group1/M00/00/0C/rBJHZVrgZaWAL5LXAAFk5zs2UwI075.jpg\"/>\n" +
+//                "<br />\n" +
+//                "<img style=\"max-width:100%;height:auto;\" src=\"http://www.52mrb.com/group1/M00/00/0C/rBJHZVrgZaaAA0_FAAJnC2W3ffA818.jpg\" />";
+//        String text = SPUtils.getInstance().getString("text");
+//        String text = "<img style=\"max-width:100%;height:auto;\" src=\"http://www.52mrb.com/group1/M00/00/0C/rBJHZVrgZaSAfcktAAHCsNorduc537.jpg\" title=\",??????????_01.jpg\" alt=\",??????????_01.jpg\" /><img style=\"max-width:100%;height:auto;\" src=\"http://www.52mrb.com/group1/M00/00/0C/rBJHZVrgZaWAL5LXAAFk5zs2UwI075.jpg\" title=\",??????????_02.jpg\" alt=\",??????????_02.jpg\" /><img style=\"max-width:100%;height:auto;\" src=\"http://www.52mrb.com/group1/M00/00/0C/rBJHZVrgZaaAA0_FAAJnC2W3ffA818.jpg\" title=\",??????????_03.jpg\" alt=\",??????????_03.jpg\" />";
+        // 设置为Html
+//        if (!TextUtils.isEmpty(text)) {
+//            content.setVisibility(View.VISIBLE);
+//            recyclerview.setVisibility(View.GONE);
+//            RichText.fromHtml(text).into(content);
+//        } else {
+//            content.setVisibility(View.GONE);
+//            recyclerview.setVisibility(View.VISIBLE);
+//        }
     }
 
     @Override
@@ -90,10 +117,12 @@ public class XRichTextActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()) {
             case R.id.save_btn:
                 Log.e("富文本字符串", "onClick: " + getEditData());
+                SPUtils.getInstance().put("text", getEditData());
+                finish();
                 break;
             case R.id.add_text_bt:
                 input_lt.setVisibility(View.VISIBLE);
-                limitEditTextView.focusInput();
+                KeyboardUtils.showSoftInput(limitEditTextView.getLimitEt());
                 break;
             case R.id.add_pic_btn:
                 addPhotoDialog();
@@ -116,13 +145,13 @@ public class XRichTextActivity extends AppCompatActivity implements View.OnClick
 
                 limitEditTextView.clearText();
                 input_lt.setVisibility(View.GONE);
-                limitEditTextView.GoneEditeText();
+                KeyboardUtils.hideSoftInput(limitEditTextView.getLimitEt());
                 break;
 
             case R.id.no:
                 limitEditTextView.clearText();
                 input_lt.setVisibility(View.GONE);
-                limitEditTextView.GoneEditeText();
+                KeyboardUtils.hideSoftInput(limitEditTextView.getLimitEt());
                 break;
         }
     }
